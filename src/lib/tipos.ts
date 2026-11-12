@@ -10,3 +10,10 @@ export type FilaStock = {
 }
 
 export type Rol = 'admin' | 'visor'
+
+// Una fila de la tabla perfil.
+export type Perfil = {
+  id: string
+  nombre: string | null
+  rol: Rol
+}
