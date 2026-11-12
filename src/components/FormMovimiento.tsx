@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { useSearchParams } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 import { mensajeError, type ProductoConStock } from '../lib/catalogo'
 import { MOTIVOS, registrarMovimiento, type TipoMovimiento } from '../lib/movimientos'
@@ -20,10 +21,13 @@ type Props = {
 // Formulario rápido para registrar un movimiento (solo admin).
 export default function FormMovimiento({ productos, onRegistrado }: Props) {
   const { sesion } = useAuth()
-  const [tipo, setTipo] = useState<TipoMovimiento>('salida')
-  const [varianteId, setVarianteId] = useState('')
+  // Si llegas desde Alertas → "Reponer", la URL trae ?variante=…&tipo=entrada
+  const [params] = useSearchParams()
+  const tipoInicial = (TIPOS.some((t) => t.valor === params.get('tipo')) ? params.get('tipo') : 'salida') as TipoMovimiento
+  const [tipo, setTipo] = useState<TipoMovimiento>(tipoInicial)
+  const [varianteId, setVarianteId] = useState(params.get('variante') ?? '')
   const [cantidad, setCantidad] = useState('')
-  const [motivo, setMotivo] = useState(MOTIVOS.salida[0])
+  const [motivo, setMotivo] = useState(MOTIVOS[tipoInicial][0])
   const [guardando, setGuardando] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [exito, setExito] = useState<string | null>(null)

@@ -9,6 +9,7 @@ const ENLACES: Enlace[] = [
   { a: '/productos', texto: 'Productos' },
   { a: '/movimientos', texto: 'Movimientos' },
   { a: '/alertas', texto: 'Alertas' },
+  { a: '/reportes', texto: 'Reportes' },
   { a: '/usuarios', texto: 'Usuarios', soloAdmin: true },
 ]
 

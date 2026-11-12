@@ -1,23 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import FormMovimiento from '../components/FormMovimiento'
+import ListaMovimientos from '../components/ListaMovimientos'
 import { cargarCatalogo, mensajeError, type ProductoConStock } from '../lib/catalogo'
 import {
   cargarHistorial,
   cargarNombres,
   type FiltrosHistorial,
   type Movimiento,
-  type TipoMovimiento,
 } from '../lib/movimientos'
-import { formatoLitros } from '../lib/formato'
-
-const fechaHora = new Intl.DateTimeFormat('es-CL', { dateStyle: 'short', timeStyle: 'short' })
-
-const ETIQUETA: Record<TipoMovimiento, string> = {
-  entrada: 'bg-emerald-100 text-emerald-800',
-  salida: 'bg-red-100 text-red-800',
-  ajuste: 'bg-sky-100 text-sky-800',
-}
 
 export default function Movimientos() {
   const { esAdmin } = useAuth()
@@ -119,34 +110,10 @@ export default function Movimientos() {
         <p className="mt-4 text-stone-600">No hay movimientos con esos filtros.</p>
       )}
 
-      {/* Lista: tarjetas en móvil, filas en escritorio */}
       {historial.length > 0 && (
-        <ul className="mt-4 divide-y divide-stone-100 overflow-hidden rounded-xl bg-white shadow-sm">
-          {historial.map((m) => (
-            <li key={m.id} className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 p-3 text-sm sm:grid-cols-[9rem_1fr_auto]">
-              <span className="text-xs text-stone-500 sm:order-none sm:text-sm">
-                {fechaHora.format(new Date(m.fecha))}
-              </span>
-              <span
-                className={`row-span-2 self-center text-right font-semibold whitespace-nowrap sm:order-last sm:row-span-1 ${
-                  m.cantidad < 0 ? 'text-red-700' : 'text-emerald-700'
-                }`}
-              >
-                {m.cantidad > 0 ? '+' : '−'}
-                {formatoLitros(Math.abs(m.cantidad))}
-              </span>
-              <span>
-                <span className={`mr-2 rounded px-1.5 py-0.5 text-xs ${ETIQUETA[m.tipo]}`}>{m.tipo}</span>
-                <span className="font-medium">{nombreVariante[m.variante_id] ?? '—'}</span>
-                <span className="text-stone-500">
-                  {m.motivo && ` · ${m.motivo}`}
-                  {' · '}
-                  {m.usuario_id ? (nombres[m.usuario_id] ?? 'usuario') : 'carga inicial'}
-                </span>
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-4">
+          <ListaMovimientos movimientos={historial} nombreVariante={nombreVariante} nombres={nombres} />
+        </div>
       )}
       {historial.length === 200 && (
         <p className="mt-2 text-xs text-stone-500">Se muestran los 200 más recientes. Usa los filtros para ver otros.</p>

@@ -51,13 +51,13 @@ export type FiltrosHistorial = {
   hasta: string
 }
 
-/** Últimos movimientos (máx. 200) según los filtros. El filtrado lo hace Supabase. */
-export async function cargarHistorial(f: FiltrosHistorial): Promise<Movimiento[]> {
+/** Últimos movimientos (máx. `limite`) según los filtros. El filtrado lo hace Supabase. */
+export async function cargarHistorial(f: FiltrosHistorial, limite = 200): Promise<Movimiento[]> {
   let q = supabase
     .from('movimiento')
     .select('id, variante_id, tipo, cantidad, motivo, usuario_id, fecha')
     .order('fecha', { ascending: false })
-    .limit(200)
+    .limit(limite)
 
   if (f.tipo !== 'todos') q = q.eq('tipo', f.tipo)
   if (f.varianteIds) q = q.in('variante_id', f.varianteIds)

@@ -8,7 +8,8 @@ import Usuarios from './pages/Usuarios'
 import Productos from './pages/Productos'
 import ProductoForm from './pages/ProductoForm'
 import Movimientos from './pages/Movimientos'
-import EnConstruccion from './pages/EnConstruccion'
+import Alertas from './pages/Alertas'
+import Reportes from './pages/Reportes'
 
 // Mapa de pantallas de la app y quién puede entrar a cada una.
 export default function App() {
@@ -24,7 +25,8 @@ export default function App() {
               <Route index element={<Dashboard />} />
               <Route path="productos" element={<Productos />} />
               <Route path="movimientos" element={<Movimientos />} />
-              <Route path="alertas" element={<EnConstruccion titulo="Alertas" fase={6} />} />
+              <Route path="alertas" element={<Alertas />} />
+              <Route path="reportes" element={<Reportes />} />
 
               {/* Y esto, además, rol admin */}
               <Route element={<RutaProtegida soloAdmin />}>
