@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Usuarios from './pages/Usuarios'
 import Productos from './pages/Productos'
 import ProductoForm from './pages/ProductoForm'
+import Movimientos from './pages/Movimientos'
 import EnConstruccion from './pages/EnConstruccion'
 
 // Mapa de pantallas de la app y quién puede entrar a cada una.
@@ -22,7 +23,7 @@ export default function App() {
             <Route element={<Layout />}>
               <Route index element={<Dashboard />} />
               <Route path="productos" element={<Productos />} />
-              <Route path="movimientos" element={<EnConstruccion titulo="Movimientos" fase={5} />} />
+              <Route path="movimientos" element={<Movimientos />} />
               <Route path="alertas" element={<EnConstruccion titulo="Alertas" fase={6} />} />
 
               {/* Y esto, además, rol admin */}
