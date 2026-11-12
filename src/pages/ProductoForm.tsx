@@ -77,8 +77,9 @@ export default function ProductoForm() {
             formula: v.formula,
             sku: v.sku ?? '',
             unidad: v.unidad,
-            precio: String(v.precio ?? ''),
-            costo: String(v.costo ?? ''),
+            // 0 = sin precio todavía: se muestra el campo vacío.
+            precio: v.precio ? String(v.precio) : '',
+            costo: v.costo ? String(v.costo) : '',
             stock_minimo: String(v.stock_minimo),
             stock_inicial: '0',
           })),
