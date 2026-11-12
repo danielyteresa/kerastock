@@ -5,6 +5,8 @@ import RutaProtegida from './components/RutaProtegida'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Usuarios from './pages/Usuarios'
+import Productos from './pages/Productos'
+import ProductoForm from './pages/ProductoForm'
 import EnConstruccion from './pages/EnConstruccion'
 
 // Mapa de pantallas de la app y quién puede entrar a cada una.
@@ -19,12 +21,14 @@ export default function App() {
           <Route element={<RutaProtegida />}>
             <Route element={<Layout />}>
               <Route index element={<Dashboard />} />
-              <Route path="productos" element={<EnConstruccion titulo="Productos" fase={4} />} />
+              <Route path="productos" element={<Productos />} />
               <Route path="movimientos" element={<EnConstruccion titulo="Movimientos" fase={5} />} />
               <Route path="alertas" element={<EnConstruccion titulo="Alertas" fase={6} />} />
 
               {/* Y esto, además, rol admin */}
               <Route element={<RutaProtegida soloAdmin />}>
+                <Route path="productos/nuevo" element={<ProductoForm />} />
+                <Route path="productos/:id" element={<ProductoForm />} />
                 <Route path="usuarios" element={<Usuarios />} />
               </Route>
             </Route>
