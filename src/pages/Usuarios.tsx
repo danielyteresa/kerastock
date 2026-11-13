@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import type { Perfil } from '../lib/tipos'
+import EnlacePublico from '../components/EnlacePublico'
 
 // Solo admin. Lista quién tiene acceso y con qué rol.
 // Crear usuarios se hace en Supabase (Authentication → Users): crear cuentas desde
@@ -31,6 +32,8 @@ export default function Usuarios() {
         Para agregar a alguien: créalo en Supabase → Authentication → Users y luego añade su fila
         en la tabla <code>perfil</code> con rol <code>visor</code> o <code>admin</code>.
       </p>
+
+      <EnlacePublico />
     </>
   )
 }

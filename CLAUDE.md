@@ -33,3 +33,8 @@ Vista `stock_actual`: stock por variante = suma de sus movimientos.
 1. Proponer un plan antes de cambios grandes.
 2. Una fase a la vez; dejar la app corriendo y decir cómo probarla.
 3. Commit por funcionalidad, con mensaje en español.
+
+## Vista pública
+`/publico/:token` no pide sesión. Lee por RPC `stock_publico(token)` (security definer,
+solo stock, sin precios). El token vive en `enlace_publico` (solo admin) y se cambia con
+`regenerar_enlace_publico()`. Nunca abrir tablas a `anon`.

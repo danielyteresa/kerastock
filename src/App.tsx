@@ -10,6 +10,7 @@ import ProductoForm from './pages/ProductoForm'
 import Movimientos from './pages/Movimientos'
 import Alertas from './pages/Alertas'
 import Reportes from './pages/Reportes'
+import VistaPublica from './pages/VistaPublica'
 
 // Mapa de pantallas de la app y quién puede entrar a cada una.
 export default function App() {
@@ -18,6 +19,8 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          {/* Pública: no pide sesión. Supabase revisa el código del enlace. */}
+          <Route path="/publico/:token" element={<VistaPublica />} />
 
           {/* Todo lo de aquí dentro pide sesión iniciada */}
           <Route element={<RutaProtegida />}>

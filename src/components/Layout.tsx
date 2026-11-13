@@ -10,7 +10,7 @@ const ENLACES: Enlace[] = [
   { a: '/movimientos', texto: 'Movimientos' },
   { a: '/alertas', texto: 'Alertas' },
   { a: '/reportes', texto: 'Reportes' },
-  { a: '/usuarios', texto: 'Usuarios', soloAdmin: true },
+  { a: '/usuarios', texto: 'Usuarios y enlace', soloAdmin: true },
 ]
 
 // Menú lateral en escritorio; en móvil se colapsa en un botón ☰.
