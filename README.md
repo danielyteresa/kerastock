@@ -2,7 +2,7 @@
 
 App web sencilla para controlar el inventario de una tienda de keratinas: cuánto hay de cada producto, qué entra y qué sale, y avisos cuando algo está por agotarse. Los datos viven en la nube (Supabase), así que varias personas ven el mismo stock actualizado.
 
-**🔗 En vivo:** _(enlace de Netlify aquí)_
+**🔗 En vivo:** https://kerastock.netlify.app (requiere cuenta; los datos son de una tienda real)
 
 <!-- Capturas: agrega imágenes en docs/ y descomenta
 ![Dashboard](docs/dashboard.png)
